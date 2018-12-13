@@ -29,21 +29,30 @@ namespace Dating.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
-            userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
+            try
+            {
+                userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
-            if (await _repo.IsExistUser(userForRegisterDto.Username))
-                return BadRequest("Username already exists");
+                if (await _repo.IsExistUser(userForRegisterDto.Username))
+                    return BadRequest("Username already exists");
 
-            var userToCreate = new User { UserName = userForRegisterDto.Username };
+                var userToCreate = new User { UserName = userForRegisterDto.Username };
 
-            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
+                var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+                return StatusCode(201);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Error's Register details : {ex.Message}");
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
+            throw new Exception("Nooooooooooooo !!!!");
+            
             var userFromRepo = await _repo.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFromRepo == null)
@@ -53,7 +62,7 @@ namespace Dating.API.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.UserName)
-            };
+                };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
