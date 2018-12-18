@@ -20,7 +20,10 @@ namespace Dating.API.Helpers
             CreateMap<User, UserForDetailedDto>()
                     .ForMember(dest => dest.PhotoUrl, option => {
                                 option.MapFrom(src => src.Photos.FirstOrDefault(p => p.IsMain).Url);
-                            });
+                            })
+                    .ForMember(dest => dest.Age, option => {
+                        option.MapFrom(d => d.DateOfBirth.CalculateAge());
+                    });
             CreateMap<Photo, PhotosForDetailedDto>();
         }
     }
