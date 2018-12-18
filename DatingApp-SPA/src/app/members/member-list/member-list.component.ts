@@ -22,13 +22,6 @@ export class MemberListComponent implements OnInit {
   }
 
   //#region Functions
-  // loadUsers() {
-  //   this.userService.getUsers().subscribe((users: User[]) => {
-  //     console.log(users);
-  //     this.users = users;
-  //   }, error => {
-  //     this.alertyfy.error(error);
-  //   });
-  // }
+  
   //#endregion
 }
