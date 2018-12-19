@@ -15,5 +15,7 @@ namespace Dating.API.Data
          Task<bool> SaveAll();
          
          Task<IEnumerable<User>> GetUsers();
+
+         Task<Photo> GetPhoto(int id);
     }
 }
