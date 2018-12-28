@@ -14,7 +14,7 @@ import { AlertifyService } from '../_services/alertify.service';
 export class ListsComponent implements OnInit {
 
   users: User[];
-  pagination: Pagination;
+  paginationList: Pagination;
   likesParam: string;
 
   constructor(private authService: AuthService, private userService:  UserService,
@@ -23,24 +23,26 @@ export class ListsComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe(data => {
       this.users = data['users'].result;
-      this.pagination = data['users'].pagination;
+      console.log(data);
+      this.paginationList = data['users'].pagination;
+      console.log(this.paginationList);
     });
 
     this.likesParam = 'Likers';
   }
 
   loadUsers() {
-    this.userService.getUsers(this.pagination.currentPage, this.pagination.itemsPerPage, null, this.likesParam)
+    this.userService.getUsers(this.paginationList.currentPage, this.paginationList.itemsPerPage, null, this.likesParam)
                     .subscribe((res: PaginatedResult<User[]>) => {
                             this.users = res.result;
-                            this.pagination = res.pagination;
+                            this.paginationList = res.pagination;
                           }, error => {
                             this.alertify.error(error);
                           });
   }
 
   pageChanged(event: any): void {
-    this.pagination.currentPage = event.page;
+    this.paginationList.currentPage = event.page;
     this.loadUsers();
   }
 }

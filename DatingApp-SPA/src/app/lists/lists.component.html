@@ -1,5 +1,5 @@
 <div class="text-center mt-3">
-    <h2>{{likesParam === 'Likers' ? 'Members who like me' : 'Members who I\'ve Liked'}} : {{pagination.totalItems}}</h2>
+    <h2>{{likesParam === 'Likers' ? 'Members who like me' : 'Members who I\'ve Liked'}} : {{paginationList.totalItems}}</h2>
   </div>
 
 <div class="container mt-3">
@@ -24,7 +24,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+  <pagination [boundaryLinks]="true" [totalItems]="paginationList.totalItems" [itemsPerPage]="paginationList.itemsPerPage" [(ngModel)]="paginationList.currentPage"
     (pageChanged)="pageChanged($event)" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
 
   </pagination>

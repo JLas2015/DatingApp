@@ -77,11 +77,11 @@ export function tokenGetter() {
       AlertifyService,
       AuthGuard,
       UserService,
+      ListsResolver,
       MemberDetailResolver,
       MemberListResolver,
       MemberEditResolver,
-      PreventUnsaveChanges,
-      ListsResolver
+      PreventUnsaveChanges
    ],
    bootstrap: [
       AppComponent
