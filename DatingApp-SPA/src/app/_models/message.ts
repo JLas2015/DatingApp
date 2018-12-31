@@ -1,10 +1,10 @@
 export interface Message {
     id: number;
     senderId: number;
-    senderKnownAs: string;
+    senderKnowsAs: string;
     senderPhotoUrl: string;
     recipientId: number;
-    recipientKnownAs: string;
+    recipientKnowsAs: string;
     recipientPhotoUrl: string;
     content: string;
     isRead: boolean;

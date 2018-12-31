@@ -4,6 +4,8 @@ namespace Dating.API.DTO
 {
     public class MessageToReturnDto
     {
+        public int Id { get; set; }
+        
         public int SenderId { get; set; }
         
         public string SenderKnowsAs { get; set; }
